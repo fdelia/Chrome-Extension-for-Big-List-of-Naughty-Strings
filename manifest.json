@@ -1,11 +1,10 @@
 {
 	"manifest_version": 2,
-	"name": "Joiz +",
-	"description": "Improves the user experience",
+	"name": "Naughty String Test",
+	"description": "Tests against naughty strings",
 	"version": "1.0",
 	"permissions": [
-		"storage",
-		"tabs"
+		"storage"
 	],
 	"icons": {
 		"16": "img/j_icon.png",
@@ -22,10 +21,11 @@
 	},
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 	"web_accessible_resources": [
-		"img/icon128.png"
+		"img/j_icon.png",
+		"blns.json"
 	],
 	"content_scripts": [{
-		"matches": ["http://www.joiz.ch/*", "https://www.joiz.ch/*"],
+		"matches": ["<all_urls>"],
 		"js": [
 			"js/jquery-2.0.3.min.js",
 			"js/content.js"

@@ -19,52 +19,21 @@
 	
 	<body>
 	
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">
-					<img src="img/joiz_logo_200_200.png" />
-				</a>
-			</div>
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active">
-						<a href="#" id="linkStartCollection">* Start Collection *</a>
-					</li>
-					<!-- <li>
-						<a href="#">Link</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="glyphicon glyphicon-thumbs-up"></i>
-						</a>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">Action</a>
-							</li>
-							<li>
-								<a href="#">Another action</a>
-							</li>
-							<li>
-								<a href="#">Something else here</a>
-							</li>
-							<li>
-								<a href="#">Separated link</a>
-							</li>
-							<li>
-								<a href="#">One more separated link</a>
-							</li>
-						</ul>
-					</li> -->
-				</ul>
-			</div>
-		</nav>
+	<div>
+		<span for="interval">
+			<input type="text" size="4" value="" id="interval" /> ms
+		</span>
+		<button id="setInterval">set interval</button>
+	</div>
+
+	<div>
+		<button id="run">run</button>
+	</div>
+
+	<p id="message"></p>
 		
-		<div class="well">
-			Points today: <span id="pointsToday">...</span>
-		</div>
-		
+	<p>Please watch the developer console for more information.</p>
+
+	<p>All options are lost after a page reload.</p>
 	</body>
 </html>

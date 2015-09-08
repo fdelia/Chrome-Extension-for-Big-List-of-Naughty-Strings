@@ -1,11 +1,14 @@
-# J Extensions
-> A extension which improves the user experience on joiz(dot)ch.
+# Naughty Strings Chrome Extension
 
-## Index
+Tests an input field or textarea against strings which "have a high probability of causing issues when used as user-input data". Strings from (Big List of Naughty Strings)[https://github.com/minimaxir/big-list-of-naughty-strings].
 
-* [Installation](#installation)
-* [Important Notes](#important-notes)
-* [Unimportant Notes](#unimportant-notes)
+## Note
+
+You should disable the extension if not used since it is active on every opened tab/webpage.
+
+That strings are safed locally so that no internet connection is required. I may change that in future.
+
+The extension is written in Typescript.
 
 ## Installation
 
@@ -15,14 +18,14 @@
 - Ensure "Developer Mode" is ticked/enabled in the top right
 - Click on "Load unpacked extension...".
 - Navigate to your extracted directory, and click "OK".
-- The J Extension should now be loaded. There should be an icon next to the address bar.
+- The extension should now be loaded. There should be an icon next to the address bar.
 
-## Important Notes
+## Usage
 
-I don't own any work, material or content produced from Joiz. 
+- Go to the website you want to test, log in etc.
+- Open dev console (mac: alt + cmd + j) to see what's going on
+- Click the input target (where you would input the text)
+- Click the click target (where you would click to send the text)
+- Click the extension icon and set the interval there
+- Click `run`
 
-At the time of creation of this extension the General Terms and Contitions of Joiz don't prohibit automated user action. However, the author accepts no liability for any damage in direct or indirect way due to the use of the software. Use the software at your own risk. 
-
-## Unimportant Notes
-
-It may be that parts of the code can run fully automatically :) buuuut I have noo ideaaa hoooow (contact me if you have any questions)
