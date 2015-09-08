@@ -1,0 +1,40 @@
+{
+	"manifest_version": 2,
+	"name": "Joiz +",
+	"description": "Improves the user experience",
+	"version": "1.0",
+	"permissions": [
+		"storage",
+		"tabs"
+	],
+	"icons": {
+		"16": "img/j_icon.png",
+		"48": "img/j_icon.png",
+		"128": "img/j_icon.png"
+	},
+	"browser_action": {
+		"default_title": "Open menu",
+		"default_icon": {
+			"19": "img/j_icon.png",
+			"38": "img/j_icon.png"
+		},
+		"default_popup": "popup.html"
+	},
+	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+	"web_accessible_resources": [
+		"img/icon128.png"
+	],
+	"content_scripts": [{
+		"matches": ["http://www.joiz.ch/*", "https://www.joiz.ch/*"],
+		"js": [
+			"js/jquery-2.0.3.min.js",
+			"js/content.js"
+		]
+	}],
+	"background": {
+		"scripts": [
+			"js/jquery-2.0.3.min.js",
+			"js/background.js"
+		]
+	}
+}
