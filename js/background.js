@@ -1,20 +1,20 @@
 console.log('background script');
 
-chrome.runtime.onMessage.addListener(function(req, sender, sendRes) {
-	if (req.method === "sendPoints") {
-		console.log(req);
+// chrome.runtime.onMessage.addListener(function(req, sender, sendRes) {
+// 	if (req.method === "sendPoints") {
+// 		console.log(req);
 
-		chrome.storage.local.set({
-			"pointsToday": req.points
-		}, function() {
-			console.log('points set');
-		});
+// 		chrome.storage.local.set({
+// 			"pointsToday": req.points
+// 		}, function() {
+// 			console.log('points set');
+// 		});
 
-		sendRes({
-			status: "ok"
-		});
-	}
-});
+// 		sendRes({
+// 			status: "ok"
+// 		});
+// 	}
+// });
 
 // chrome.runtime.sendMessage({
 // 	method: "startCollection"
@@ -82,16 +82,52 @@ var JoizCollector = (function() {
 		createTab(url);
 	};
 
+	function getUser(users){
+		// stop condition for recursivity
+		if (Object.prototype.toString.call(users) !== '[object Array]' || users.length < 1) return;
+
+		// gets and removes first user
+		var nickName = users.shift().nickName;
+		if (typeof nickName !== 'string') {
+			console.error('type error');
+			return;
+		}
+
+		// try to find out if isn't friend or isn't fan
+		$.ajax({
+			url: 'https://www.joiz.ch/user/mini-profile/' + nickName
+		}).done(function(data) {
+			if (data.indexOf('Freund werden') > -1 || data.indexOf('Fan werden') > -1) {
+				// go for this user
+				console.log('go for user '+nickName);
+				var url = "https://www.joiz.ch/user/profile/gluupsch" + nickName;
+				createTab(url);
+			} else {
+				// try next user
+				getUser(users);
+			}
+
+		});
+
+
+	}
+
 	JoizCollector.prototype.runPerson = function() {
 		// this gets a list of online users
 		// https://www.joiz.ch/online-users/1/52.json
 		// this gets a mini profile in html
 		// https://www.joiz.ch/user/mini-profile/severindesmond
-		var data = {};
-		$.getJSON('https://www.joiz.ch/online-users/1/52.json', data, function(data, textStatus, jqXHR) {
-			console.log(data);
 
+		var sendData = {};
+		$.getJSON('https://www.joiz.ch/online-users/1/52.json', sendData, function(data, textStatus, jqXHR) {
+			var users = data.users.slice(0, 3); // only look at first 3 users
 
+			if (users.length < 3) {
+				console.error('user list from online-users is too small');
+				return;
+			}
+
+			getUser(users);
 
 		});
 
@@ -220,6 +256,7 @@ function main() {
 	var JC = new JoizCollector();
 
 	var intHandler = setInterval(function() {
+		console.log('* interval tick *');
 		// get and save today points
 		JC.setTodayPoints();
 
@@ -236,7 +273,7 @@ function main() {
 
 
 	// dev
-	JC.runPerson();
+	// JC.runPerson();
 	// JC.setTodayPoints();
 	// JC.runLive();
 	// JC.runMarketPlace();
