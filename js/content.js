@@ -46,19 +46,23 @@ function onMessage(req, sender, sendResponse) {
 }
 function run() {
     console.log('running tests now');
-    $.getJSON(chrome.extension.getURL('blns.json'), function (strings) {
-        // strings is an array of test strings
+    var url = "https://raw.githubusercontent.com/minimaxir/big-list-of-naughty-strings/master/blns.json";
+    // var url = chrome.extension.getURL('blns.json');
+    $.getJSON(url, function (strings) {
+        // "strings" is an array of test strings
         // unbind since click() would mess up the targets
         unbindEventHandlers();
-        //  	var backup_inputTarget = inputTarget;
-        // var backup_clickTarget = clickTarget;
         // dev
         // strings = strings.slice(0, 3);
+        // console.log(strings);
+        // strings = [];
+        if (!strings || strings.length < 1) {
+            console.error('No strings found. Connected to internet? Tried with url: ' + url);
+            return;
+        }
         console.log('found ' + strings.length + ' strings');
         var intHandler = setInterval(function () {
             testString(strings.shift());
-            // inputTarget = backup_inputTarget;
-            // clickTarget = backup_clickTarget;
             if (strings.length < 1) {
                 clearInterval(intHandler);
                 console.log('tests finished');

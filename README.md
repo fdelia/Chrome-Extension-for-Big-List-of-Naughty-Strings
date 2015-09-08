@@ -1,14 +1,14 @@
-# Naughty Strings Chrome Extension
+# Chrome Extension for Big List of Naughty Strings
 
-Tests an input field or textarea against strings which "have a high probability of causing issues when used as user-input data". Strings from (Big List of Naughty Strings)[https://github.com/minimaxir/big-list-of-naughty-strings].
+Tests an input field or textarea against strings which "have a high probability of causing issues when used as user-input data". Strings are from [Big List of Naughty Strings](https://github.com/minimaxir/big-list-of-naughty-strings).
 
-## Note
+## Notes
+
+Internet connection is required to get the file with strings (downloads [this file](https://raw.githubusercontent.com/minimaxir/big-list-of-naughty-strings/master/blns.json)).
 
 You should disable the extension if not used since it is active on every opened tab/webpage.
 
-That strings are safed locally so that no internet connection is required. I may change that in future.
-
-The extension is written in Typescript.
+The extension is very basic and written in Typescript (*.ts). The Typescript files are partly commented.
 
 ## Installation
 
